@@ -1,0 +1,65 @@
+h1, h2, h3, h4{
+	margin: 0;
+}
+ol, ul{
+	margin: 0;
+    padding-left: 0;
+    list-style: none;
+}
+p{
+    margin: 0;
+}
+a{
+    color: inherit;
+    text-decoration: none;
+}
+img{
+    display: block;
+    margin: 0;
+}
+figure{
+    margin: 0;
+}
+picture{
+    display: block;
+}
+canvas{
+    display: block;
+}
+iframe{
+    display: block;
+	border: 0;
+}
+fieldset{
+    margin: 0;
+    padding: 0;
+	border: 0;
+}
+table{
+	border-collapse: collapse;
+    border-spacing: 0;
+}
+tbody, thead, tr, th, td{
+	padding: 0;
+}
+svg{
+	display: block;
+}
+video{
+    display: block;
+}
+blockquote{
+	margin: 0;
+}
+dl, dd{
+    margin: 0;
+}
+button{
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background: none;
+    cursor: pointer;
+	padding: 0;
+	border: 0;
+}

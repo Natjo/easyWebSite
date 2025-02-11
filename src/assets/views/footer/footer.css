@@ -1,0 +1,17 @@
+#footer {
+  background-color: antiquewhite;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  display: flex;
+
+  ul {
+    display: flex;
+    gap: 1rem;
+  }
+
+  small {
+    margin-left: auto;
+  }
+
+  @media(--breakpoint-md-up) {}
+}

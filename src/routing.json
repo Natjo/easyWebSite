@@ -1,0 +1,66 @@
+{
+    "contact": {
+        "fr": {
+            "title": "Contact",
+            "slug": "/contact"
+        },
+        "en": {
+            "title": "Contact us",
+            "slug": "/en/contact"
+        }
+    },
+    "homepage": {
+        "fr": {
+            "title": "Accueil",
+            "slug": "/"
+        },
+        "en": {
+            "title": "Home",
+            "slug": "/en"
+        }
+    },
+    "team": {
+        "fr": {
+            "title": "Équipe",
+            "slug": "/team"
+        },
+        "en": {
+            "title": "Team",
+            "slug": "/en/team"
+        }
+    },
+    "news": {
+        "fr": {
+            "title": "Nouveautés",
+            "slug": "/news"
+        },
+        "en": {
+            "title": "News",
+            "slug": "/en//news"
+        }
+    },
+    "news/1": {
+        "fr": {
+            "title": "Première news",
+            "slug": "/news/premiere_news",
+            "intro": "Ceci est la premiere news"
+        },
+        "en": {
+            "title": "My first news",
+            "slug": "/news/en/first_news",
+            "intro": "Here is the first news"
+        }
+    },
+    "news/2": {
+        "fr": {
+            "title": "Seconde news",
+            "slug": "/news/second_news",
+            "intro": "Ceci est la deuxieme news"
+        },
+        "en": {
+            "title": "My second news",
+            "slug": "/news/en/second_news",
+            "intro": "Here is the second news"
+        }
+    }
+}

@@ -1,0 +1,141 @@
+.btn {
+    border-radius: 3rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all .3s ease;
+    position: relative;
+    box-sizing: border-box;
+
+    &:before {
+        content: "";
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, #00ADE1, #17428C);
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        border-radius: 3rem;
+        opacity: 0;
+        transition: opacity .3s ease;
+    }
+}
+
+.btn-1 {
+    background-color: #fff;
+    z-index: 0;
+    color: var(--color-1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.4rem;
+    padding: 1.5rem 2.4rem 1.5rem 3rem;
+
+    span {
+        transition: all .3s ease;
+    }
+
+    &.light {
+        outline: 1px solid var(--color-1);
+    }
+
+    &.dark{
+        color: #fff;
+        &:before {
+            opacity: 1;
+        }
+
+    }
+
+    .icon {
+        fill: currentColor;
+        transition: all .3s ease;
+    }
+
+    &:active {
+        color: #fff;
+
+        &:before {
+            opacity: 1;
+        }
+        &.dark{
+            color: var(--color-1);
+            
+            &:before {
+                opacity: 0;
+            } 
+        }
+        &.light {
+            outline-color: rgba(0, 0, 0, 0)
+        }
+    }
+
+    @media(hover: hover) and (pointer: fine) {
+        &:hover {
+            color: #fff;
+
+            &:before {
+                opacity: 1;
+            }
+            &.dark{
+                color: var(--color-1);
+
+                &:before {
+                    opacity: 0;
+                } 
+            }
+            &.light {
+                outline-color: rgba(0, 0, 0, 0)
+            }
+        }
+    }
+}
+
+.btn-2 {
+    outline: 1px solid #fff;
+    padding: 1.6rem 3.0rem;
+
+    &:active {
+        color: #fff;
+        outline-color: rgba(0, 0, 0, 0);
+
+        &:before {
+            opacity: 1;
+        }
+    }
+
+    @media(hover: hover) and (pointer: fine) {
+        &:hover {
+            color: #fff;
+            outline-color: rgba(0, 0, 0, 0);
+
+            &:before {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.link1 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    &:after {
+        content: "";
+        width: 0;
+        height: 1px;
+        background-color: currentColor;
+        transition: width .3s ease;
+        margin-top: 1px;
+    }
+
+    &:hover {
+        align-items: flex-start;
+
+        &:after {
+            width: 100%;
+        }
+    }
+}

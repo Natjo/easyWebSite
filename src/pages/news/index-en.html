@@ -1,0 +1,22 @@
+${header()}
+
+<main id="page-news" data-type="page" data-fr="/informations" data-en="/en/informations" data-pl="/pl/informacje-prawne" data-lang="fr" data-name="Informacja">
+
+    ${view('hero-page', {
+        'title': "News",
+        'text': 'Here are all fresh news'
+    })}
+
+    <section class="container">
+        <ul class="news grid-4">
+            <li>
+                ${push('card', 'news/1')}
+            </li>
+            <li>
+                ${push('card', 'news/2')}
+            </li>
+        </ul>
+    </section>
+</main>
+
+${footer()}

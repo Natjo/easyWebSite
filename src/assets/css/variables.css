@@ -1,0 +1,62 @@
+:root {
+    
+    --font-1: 'SequelSans', sans-serif;
+    --font-2: 'SequelSans', sans-serif;
+
+    --ctr-width: 1400px;
+
+    --color-text: #1D1E20;
+
+    --gray-light: #ECECEC;
+    --gray: #ECECEC;
+    --gray-dark: #ECECEC;
+
+    --color-1: #254A9A;
+    --color-2: #9e9456;
+    --color-3: #00768C;
+    --color-5: #bc8da6;
+
+    --color-error: red;
+    --color-valid: green;
+    --color-focus: blue;
+}
+
+@media(--breakpoint-lg-down) {
+    :root {
+        --ctr-offset: 22px;
+        --header-height: 80px;
+        --gap: 20px;
+        --margin-sm: 10px;
+        --margin: 10px;
+        --margin-lg: 20px;
+        --font-size-sm: 1.2rem;
+        --font-size: 1.4rem;
+        --font-size-md: 1.6rem;
+        --font-size-lg: 1.8rem;
+        --font-size-xlg: 2rem;
+    }
+}
+
+@media (--breakpoint-lg-up) {
+    :root {
+        --ctr-offset: 22px;
+        --header-height: 115px;
+        --gap: 40px;
+
+        --font-size-sm: 1.2rem;
+        --font-size: 1.6rem;
+        --font-size-md: 1.8rem;
+        --font-size-lg: 2.2rem;
+        --font-size-xlg: 2.8rem;
+
+        --margin-sm: 20px;
+        --margin: 40px;
+        --margin-lg: 60px;
+    }
+}
+
+@media (--breakpoint-xl-up) {
+    :root {
+        --header-height: 144px;
+    }
+}

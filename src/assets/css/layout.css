@@ -1,0 +1,118 @@
+html {
+    font-size: 62.5%;
+}
+
+input,
+textarea,
+button,
+select,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: var(--font-1);
+    font-size: 1.6rem;
+    line-height: 1;
+    margin: 0;
+    color: var(--color-text);
+    background-color: #fff;
+}
+
+.container {
+    padding-left: var(--ctr-offset);
+    padding-right: var(--ctr-offset);
+    box-sizing: border-box;
+}
+
+
+@keyframes main-hide {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+@keyframes main-show {
+    from{
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    grid-area: 1/1;
+    
+    
+    &.hide {
+        animation: main-hide 2.3s ease both;
+    }
+    &.show {
+        animation: main-show 2.3s ease ;
+    }
+
+}
+
+.main-wrapper {
+    display: grid;
+    transition: opacity 2.3s ease;
+    opacity: 1;
+    /*position:relative;
+    z-index:-1;
+
+    &.hide {
+        opacity: 0;
+    }*/
+}
+
+@keyframes panel-show {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes panel-hide {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+.panel {
+    position: fixed;
+    z-index: 102;
+    height: 100vh;
+    background-color: #ccc;
+    width: 100%;
+    top: 0;
+    left: 100%;
+    animation: panel-show .3s ease both;
+
+    &.hide {
+        animation: panel-hide .3s ease both;
+    }
+
+}
+
+
+.grid-4 {
+    display: grid;
+    gap: var(--gap);
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}

@@ -1,0 +1,40 @@
+.rte {
+    text-align: center;
+    letter-spacing: 1px;
+
+    p {
+        line-height: 1.4;
+        margin-bottom: 2rem;
+    }
+
+    ul {
+        line-height: 1.4;
+        margin-bottom: 2rem;
+
+        li{
+            margin-bottom: 1rem;
+        }
+    }
+
+    a {
+        text-decoration: underline;
+    }
+
+    h2{
+        margin-bottom: 2rem;
+    }
+
+    .chapo {
+        font-size: 1.9rem;
+        font-weight: 700;
+        margin-bottom: 1.4rem;
+        margin-bottom: 3rem;
+        line-height: 1.2;
+    }
+
+    > *:nth-last-child(1){
+        margin-bottom: 0;
+    }
+
+
+}

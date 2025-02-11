@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="${page.lang}">
+
+<head>
+    <meta charset="utf-8">
+    <title>${page.title}</title>
+    <base href="/">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="assets/favicon/site.webmanifest">
+    <link rel="mask-icon" href="assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover, user-scalable=no">
+    <meta name="color-scheme" content="light dark">
+
+    ${Object.entries(routing[page.id]).map(entry => `<link rel="alternate"  href="${entry[1].slug}" hreflang="${entry[0]}">` ).join('')}
+
+    <link rel='stylesheet' href="/assets/styles.css${version ? `?v=${version}`: ''}"/>
+</head>
+
+<body class="init">
+    ${view('headernav')}
+
+    <div class="main-wrapper">

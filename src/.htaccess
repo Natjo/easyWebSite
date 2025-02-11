@@ -1,0 +1,9 @@
+AuthType Basic
+AuthName "restricted area"
+AuthUserFile /var/www/html/.htpasswd
+require valid-user
+
+
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "SAMEORIGIN"
+</IfModule>

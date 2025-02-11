@@ -1,0 +1,21 @@
+${header()}
+
+<main id="page-news">
+    ${view('hero-page', {
+        'title': "Nouveautes",
+        'text': 'Voiçi toutes les nouveautés'
+    })}
+
+    <section class="container">
+        <ul class="news grid-4">
+            <li>
+                ${push('card', 'news/1')}
+            </li>
+            <li>
+                ${push('card', 'news/2')}
+            </li>
+        </ul>
+    </section>
+</main>
+
+${footer()}

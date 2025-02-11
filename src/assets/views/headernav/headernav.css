@@ -1,0 +1,36 @@
+#header {
+    background-color: antiquewhite;
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+    height: 6rem;
+
+    .logo {
+        font-size: 4rem;
+        grid-area: 1/1;
+        font-weight: 900;
+        letter-spacing: -.7rem;
+        justify-self: start
+    }
+}
+
+.lang-select {
+    margin-left: auto;
+    grid-area: 1/1;
+
+    ul {
+        display: flex;
+        gap: 1rem;
+    }
+    .active{
+        font-weight : 500;
+    }
+}
+
+#nav {
+    grid-area: 1/1;
+    justify-self: center;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}

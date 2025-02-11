@@ -1,0 +1,27 @@
+services: 
+  php:
+    image: php:8-fpm
+    container_name: ${APP_NAME}-php
+    volumes:
+      - ../.docker/php/php.ini:/usr/local/etc/php/conf.d/php.ini
+      - ../web:/var/www/html
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:latest
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    container_name: ${APP_NAME}-nginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ../.docker/nginx/default.conf:/tmp/default.template
+      - ../.docker/certs:/etc/certs
+      - ../web:/var/www/html
+    depends_on:
+      - php
+    restart: unless-stopped
+    entrypoint: /bin/bash -c 'cat /tmp/default.template | sed "s/\\\$$domain/${DOMAIN}/g" > /etc/nginx/conf.d/default.conf && nginx -g "daemon off;"'
+  
