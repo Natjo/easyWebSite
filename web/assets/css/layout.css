@@ -19,8 +19,9 @@ body {
     margin: 0;
     color: var(--color-text);
     background-color: #fff;
+}
 
-    &:after{
+body:after{
         content: "";
         position: absolute;
         inset: 0 0 0 0;
@@ -29,17 +30,14 @@ body {
         transition: height .6s ease;
         z-index: 1000;
     }
-    &.transitionstart{
-        &:after{
+
+body.transitionstart:after{
         height: 100vh;
         }
-    }
-    &.transitionend{
-        &:after{
+
+body.transitionend:after{
             height: 0;
             }
-    }
-}
 
 .container {
     padding-left: var(--ctr-offset);
@@ -74,16 +72,15 @@ main {
     box-sizing: border-box;
     grid-area: 1/1;
 
+}
 
-    &.hide {
+main.hide {
         animation: main-hide 2.3s ease both;
     }
 
-    &.show {
+main.show {
         animation: main-show 2.3s ease;
     }
-
-}
 
 .main-wrapper {
     display: grid;
@@ -138,11 +135,11 @@ main {
     left: 100%;
     animation: panel-show .3s ease both;
 
-    &.hide {
+}
+
+.panel.hide {
         animation: panel-hide .3s ease both;
     }
-
-}
 
 
 .grid-4 {

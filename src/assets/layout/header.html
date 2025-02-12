@@ -18,12 +18,14 @@
     <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover, user-scalable=no">
     <meta name="color-scheme" content="light dark">
 
-    ${Object.entries(routing[page.id]).map(entry => `<link rel="alternate"  href="${entry[1].slug}" hreflang="${entry[0]}">` ).join('')}
+    ${Object.entries(routing[page.id]).map(entry => `
+    <link rel="alternate" href="${entry[1].slug}" hreflang="${entry[0]}">` ).join('')}
 
-    <link rel='stylesheet' href="/assets/styles.css${version ? `?v=${version}`: ''}"/>
+    <link rel='stylesheet' href="/assets/styles.css${version ? `?v=${version}`: ''}" />
 </head>
 
 <body class="init">
+
     ${view('headernav')}
 
     <div class="main-wrapper">

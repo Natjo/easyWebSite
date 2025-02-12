@@ -193,6 +193,24 @@ body {
     background-color: #fff;
 }
 
+body:after{
+        content: "";
+        position: absolute;
+        inset: 0 0 0 0;
+        background-color: red;
+        height: 0;
+        transition: height .6s ease;
+        z-index: 1000;
+    }
+
+body.transitionstart:after{
+        height: 100vh;
+        }
+
+body.transitionend:after{
+            height: 0;
+            }
+
 .container {
     padding-left: var(--ctr-offset);
     padding-right: var(--ctr-offset);
@@ -209,10 +227,12 @@ body {
         opacity: 0;
     }
 }
+
 @keyframes main-show {
-    from{
+    from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -231,20 +251,31 @@ main.hide {
     }
 
 main.show {
-        animation: main-show 2.3s ease ;
+        animation: main-show 2.3s ease;
     }
 
 .main-wrapper {
     display: grid;
-    transition: opacity 2.3s ease;
-    opacity: 1;
-    /*position:relative;
-    z-index:-1;
-
-    &.hide {
-        opacity: 0;
-    }*/
 }
+
+/*
+.transition {
+    position: absolute;
+    inset: 0 0 0 0;
+    background-color: red;
+    height: 0;
+    transition: height .6s ease;
+    z-index: 1000;
+
+    &.show{
+        height: 100vh;
+    }
+    &.hide{
+      height: 0;
+    }
+}
+    */
+
 
 @keyframes panel-show {
     from {

@@ -21,11 +21,8 @@ function preloadImgs(main, func) {
 }
 
 const onepage = onchange => {
-    const main_wrapper = document.querySelector('.main-wrapper');
-
     const addLinksAjax = el => {
         const links = el.querySelectorAll('.xhr,.xhr-full,.xhr-main,.xhr-popin');
-        console.log(links);
         links.forEach(link => {
             link.addEventListener("click", e => {
                 e.preventDefault();
@@ -44,7 +41,7 @@ const onepage = onchange => {
 
                 let href = link.getAttribute('href');
                 href += href.endsWith("/") ? "" : "/"
-                
+
                 if (window.location.pathname !== href) {
                     page(href, true, type);
                 }
@@ -54,23 +51,28 @@ const onepage = onchange => {
 
     const page = (slug, history, type = "full") => {
         fetch(slug).then(response => response.text()).then(html => {
+            const main_wrapper = document.querySelector('.main-wrapper');
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
             const head = doc.querySelector("head");
 
             if (type === "full") {
-                const newbody = doc.querySelector("body");
+                const newbody = doc.querySelector("body").innerHTML;
                 const currentbody = document.querySelector("body");
-                currentbody.innerHTML = "";
-                currentbody.appendChild(newbody);
-                addLinksAjax(newbody);
+                currentbody.classList.add("transitionstart");
+                currentbody.addEventListener('transitionend', () => {
+                    currentbody.innerHTML = newbody;
+                    addLinksAjax(document);
+                    currentbody.classList.add("transitionend");
+                    currentbody.addEventListener('transitionend', () => {
+
+                        currentbody.classList.remove("transitionstart", "transitionend");
+                    }, { once: true })
+
+                }, { once: true })
+
             } else if (type === "main") {
-
-
                 const oldmain = document.querySelector("main");
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-
                 const newmain = doc.querySelector("main");
                 main_wrapper.appendChild(newmain);
 
@@ -89,7 +91,10 @@ const onepage = onchange => {
                 newmain.addEventListener('animationend', () => {
                     newmain.classList.remove("show");
                 }, { once: true })
+
             } else if (type === "panel") {
+            } else {
+                window.location = slug;
             }
 
             if (history) {
@@ -107,7 +112,6 @@ const onepage = onchange => {
 
     window.onpopstate = function (e) {
         page(document.location.pathname, false);
-
 
         const lanselector = document.querySelector('.dropdown');
         const langlinks = lanselector.querySelectorAll('.dropdown a');
