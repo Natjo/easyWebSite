@@ -21,7 +21,7 @@ const onepage = onchange => {
   const addLinksAjax = el => {
     const links = el.querySelectorAll('.xhr,.xhr-full,.xhr-main,.xhr-popin');
     links.forEach(link => {
-      link.addEventListener("click", e => {
+      link.onclick = e => {
         e.preventDefault();
         let type = "xhr";
         if (link.classList.contains("xhr-full")) {
@@ -31,30 +31,50 @@ const onepage = onchange => {
         } else if (link.classList.contains("xhr-popin")) {
           type = "popin";
         }
-        let href = link.getAttribute('href');
-        href += href.endsWith("/") ? "" : "/";
-        if (window.location.pathname !== href) {
-          page(href, true, type);
-        }
-      }, true);
+        const href = slashify(link);
+        window.location.pathname !== href && page(href, true, type);
+      };
     });
   };
+  const slashify = link => {
+    let href = link.getAttribute('href');
+    href += href.endsWith("/") ? "" : "/";
+    return href;
+  };
+  function currentPage(slug) {
+    document.querySelectorAll("a").forEach(link => {
+      if (slashify(link) == slug) {
+        link.setAttribute("aria-current", "page");
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    });
+  }
   const page = (slug, history, type = "full") => {
+    document.body.classList.add("transition");
     fetch(slug).then(response => response.text()).then(html => {
-      const main_wrapper = document.querySelector('.main-wrapper');
       const parser = new DOMParser();
       const doc = parser.parseFromString(html, 'text/html');
       const head = doc.querySelector("head");
+      const main_wrapper = document.getElementById('main-wrapper');
       if (type === "full") {
-        const newbody = doc.querySelector("body").innerHTML;
-        const currentbody = document.querySelector("body");
-        currentbody.classList.add("transitionstart");
-        currentbody.addEventListener('transitionend', () => {
-          currentbody.innerHTML = newbody;
+        const newheader = doc.querySelector("#header");
+        const newfooter = doc.querySelector("#footer");
+        const newmain_wrapper = doc.getElementById('main-wrapper');
+        const header = document.querySelector('#header');
+        const footer = document.querySelector('#footer');
+        const transition = document.getElementById("transition");
+        transition.classList.add("transitionstart");
+        transition.addEventListener('transitionend', () => {
+          main_wrapper.replaceWith(newmain_wrapper);
+          header.replaceWith(newheader);
+          footer.replaceWith(newfooter);
           addLinksAjax(document);
-          currentbody.classList.add("transitionend");
-          currentbody.addEventListener('transitionend', () => {
-            currentbody.classList.remove("transitionstart", "transitionend");
+          currentPage(slug);
+          transition.classList.add("transitionend");
+          transition.addEventListener('transitionend', () => {
+            transition.classList.remove("transitionstart", "transitionend");
+            document.body.classList.remove("transition");
           }, {
             once: true
           });
@@ -62,21 +82,23 @@ const onepage = onchange => {
           once: true
         });
       } else if (type === "main") {
-        const oldmain = document.querySelector("main");
+        const main = document.querySelector("main");
         const newmain = doc.querySelector("main");
         main_wrapper.appendChild(newmain);
         doc.querySelectorAll("link[hreflang]").forEach(lang => {
           document.querySelectorAll(`a[lang="${lang.hreflang}"]`).forEach(link => link.href = lang.href);
         });
-        oldmain.classList.add("hide");
+        main.classList.add("hide");
         newmain.classList.add("show");
-        oldmain.addEventListener('animationend', () => {
-          oldmain.remove();
+        currentPage(slug);
+        main.addEventListener('animationend', () => {
+          main.remove();
         }, {
           once: true
         });
         newmain.addEventListener('animationend', () => {
           newmain.classList.remove("show");
+          document.body.classList.remove("transition");
         }, {
           once: true
         });
@@ -92,6 +114,7 @@ const onepage = onchange => {
     }).catch(err => console.warn('Something went wrong.', err));
   };
   addLinksAjax(document);
+  currentPage(window.location.pathname);
   if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
   }

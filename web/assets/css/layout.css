@@ -21,23 +21,12 @@ body {
     background-color: #fff;
 }
 
-body:after{
-        content: "";
-        position: absolute;
-        inset: 0 0 0 0;
-        background-color: red;
-        height: 0;
-        transition: height .6s ease;
-        z-index: 1000;
+body.transition{
+        pointer-events: none;
+        -webkit-user-select: none;
+           -moz-user-select: none;
+                user-select: none;
     }
-
-body.transitionstart:after{
-        height: 100vh;
-        }
-
-body.transitionend:after{
-            height: 0;
-            }
 
 .container {
     padding-left: var(--ctr-offset);
@@ -71,39 +60,40 @@ main {
     flex-direction: column;
     box-sizing: border-box;
     grid-area: 1/1;
-
 }
 
 main.hide {
-        animation: main-hide 2.3s ease both;
+        animation: main-hide .6s ease both;
     }
 
 main.show {
-        animation: main-show 2.3s ease;
+        animation: main-show .6s ease;
     }
 
-.main-wrapper {
+#main-wrapper {
     display: grid;
 }
 
-/*
-.transition {
+
+#transition {
     position: absolute;
     inset: 0 0 0 0;
-    background-color: red;
+    background-color: green;
     height: 0;
     transition: height .6s ease;
-    z-index: 1000;
+  /*z-index: 1000;*/
+    pointer-events: none;  cursor:wait;
+}
 
-    &.show{
+
+#transition.transitionstart {
         height: 100vh;
     }
-    &.hide{
-      height: 0;
-    }
-}
-    */
 
+
+#transition.transitionend {
+        height: 0;
+    }
 
 @keyframes panel-show {
     from {

@@ -19,25 +19,10 @@ body {
     margin: 0;
     color: var(--color-text);
     background-color: #fff;
-
-    &:after{
-        content: "";
-        position: absolute;
-        inset: 0 0 0 0;
-        background-color: red;
-        height: 0;
-        transition: height .6s ease;
-        z-index: 1000;
-    }
-    &.transitionstart{
-        &:after{
-        height: 100vh;
-        }
-    }
-    &.transitionend{
-        &:after{
-            height: 0;
-            }
+    
+    &.transition{
+        pointer-events: none;
+        user-select: none;
     }
 }
 
@@ -74,39 +59,36 @@ main {
     box-sizing: border-box;
     grid-area: 1/1;
 
-
     &.hide {
-        animation: main-hide 2.3s ease both;
+        animation: main-hide .6s ease both;
     }
 
     &.show {
-        animation: main-show 2.3s ease;
+        animation: main-show .6s ease;
     }
-
 }
 
-.main-wrapper {
+#main-wrapper {
     display: grid;
 }
 
-/*
-.transition {
+
+#transition {
     position: absolute;
     inset: 0 0 0 0;
-    background-color: red;
+    background-color: green;
     height: 0;
     transition: height .6s ease;
-    z-index: 1000;
-
-    &.show{
+  /*z-index: 1000;*/
+    pointer-events: none;  cursor:wait;
+    &.transitionstart {
         height: 100vh;
     }
-    &.hide{
-      height: 0;
+
+    &.transitionend {
+        height: 0;
     }
 }
-    */
-
 
 @keyframes panel-show {
     from {
