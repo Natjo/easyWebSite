@@ -65,8 +65,9 @@ const onepage = onchange => {
         })
     }
 
-    const page = (slug, history, type = "full") => {
+    const page = (slug, pushstate, type = "full") => {
         document.body.classList.add("transition");
+
         fetch(slug).then(response => response.text()).then(html => {
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
@@ -122,9 +123,11 @@ const onepage = onchange => {
                 window.location = slug;
             }
 
-            if (history) {
-                document.title = head.innerText;
-                window.history.pushState({ 'type': "page" }, slug, slug);
+            document.title = head.innerText;
+
+            if (pushstate) {
+                history.pushState({ 'type': type }, slug, slug);
+                console.log("fetch", slug);
             }
         }).catch(err => console.warn('Something went wrong.', err));
     }
@@ -138,21 +141,22 @@ const onepage = onchange => {
     }
 
     window.onpopstate = function (e) {
-        page(document.location.pathname, false);
+ 
+        const type = e.state ? e.state.type : null;
+        if (!window.location.hash) page(document.location.pathname, false, type);
 
-        const lanselector = document.querySelector('.dropdown');
-        const langlinks = lanselector.querySelectorAll('.dropdown a');
-        const pathname = document.location.pathname;
-
-        langlinks.forEach(link => {
-            const href = link.getAttribute('href').endsWith("/") ? link.getAttribute('href') : link.getAttribute('href') + "/"
-            if (href === pathname) link.classList.add('active');
-            else link.classList.remove('active');
-
-        });
-
-
+        /*  const lanselector = document.querySelector('.dropdown');
+          const langlinks = lanselector.querySelectorAll('.dropdown a');
+          const pathname = document.location.pathname;
+  
+          langlinks.forEach(link => {
+              const href = link.getAttribute('href').endsWith("/") ? link.getAttribute('href') : link.getAttribute('href') + "/"
+              if (href === pathname) link.classList.add('active');
+              else link.classList.remove('active');
+          });*/
     }
+
+    // history.replaceState({ 'type': "main" }, "", document.location.pathname);
 };
 
 export default onepage;
